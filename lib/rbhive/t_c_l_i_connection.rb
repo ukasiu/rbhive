@@ -375,6 +375,7 @@ module RBHive
     def prepare_open_session(client_protocol)
       req = ::Hive2::Thrift::TOpenSessionReq.new( @options[:sasl_params].nil? ? [] : @options[:sasl_params] )
       req.client_protocol = client_protocol
+      req.configuration = { 'use:' => @options[:database] } if @options[:database]
       req
     end
 
